@@ -1,0 +1,6 @@
+for next.js init:
+npm run dev
+
+for uvicorn init:
+to activate env:  venv\Scripts\activate   
+uvicorn main:app --reload
