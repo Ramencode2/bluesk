@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import logging
 import re
 from typing import List, Dict, Any
-
+import traceback
 load_dotenv()
 
 app = FastAPI()
@@ -62,7 +62,8 @@ async def analyze_posts(term: str):
         return {"data": analyzed_posts}
     
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print("Detailed Traceback:\n", traceback.format_exc())  # See root cause
+        raise HTTPException(status_code=500, detail="Backend crash")
 
 def clean_text(text: str) -> str:
     # Remove URLs, mentions, and special characters
